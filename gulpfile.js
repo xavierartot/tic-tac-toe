@@ -5,8 +5,10 @@ var gulp = require('gulp')
 var jade = require('gulp-jade')
 var babel = require('gulp-babel')
 var stylus = require('gulp-stylus')
+var livereload = require('gulp-livereload')
 
-var dest = argv.dir || '../egoscio.github.io'
+//var dest = argv.dir || '../egoscio.github.io'
+var dest = argv.dir || './index.html'
 
 gulp.task('default', ['compile'])
 
@@ -20,22 +22,33 @@ gulp.task('assets', () => {
 gulp.task('jade', () => {
   return gulp.src('src/jade/*.jade')
     .pipe(jade({ pretty: true, doctype: 'html' }))
-    .pipe(gulp.dest(dest))
+    //.pipe(gulp.dest(dest))
+    .pipe(gulp.dest('./index.html'))
+    .pipe(livereload({
+      start: true 
+    }))
 })
 
 gulp.task('babel', () => {
   return gulp.src('src/babel/*.js')
     .pipe(babel({ presets: ['es2015'] }))
     .pipe(gulp.dest(dest))
+    .pipe(livereload({
+      start: true 
+    }))
 })
 
 gulp.task('stylus', () => {
   return gulp.src('src/stylus/*.styl')
     .pipe(stylus())
     .pipe(gulp.dest(dest))
+    .pipe(livereload({
+      start: true 
+    }))
 })
 
 gulp.task('watch', () => {
+  livereload.listen();
   gulp.watch('src/assets/*', ['assets'])
   gulp.watch('src/jade/*.jade', ['jade'])
   gulp.watch('src/babel/*.js', ['babel'])
