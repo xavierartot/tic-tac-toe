@@ -1,89 +1,10 @@
-/* style.css */
-@import url("https://fonts.googleapis.com/css?family=Homenaje");
-*:before,
-*:after,
-* {
-  box-sizing: border-box;
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-html,
-body,
-#main {
-  height: 100%;
-  width: 100%;
-}
 body {
-  background: #fff;
+  background-color: #dde;
+  color: #000;
 }
-body,
-input,
-button {
-  font-size: 1.5em;
-  font-family: 'Homenaje', sans-serif;
-  color: #4a4a4a;
-}
-input,
-textarea,
-button {
-  display: block;
-  margin: 10px auto;
-  width: 80%;
-  border: 3px solid #4a4a4a;
-  border-radius: 5px;
-  background-color: #fff;
-}
-input:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-input,
-button {
-  height: 2em;
-  text-align: center;
-}
-textarea {
-  max-width: 80%;
-  font-size: 1.5em;
-  font-family: 'Homenaje', sans-serif;
-  color: #4a4a4a;
-}
-button {
-  transition-duration: 0.5s;
-}
-button:hover {
-  background: #4a4a4a;
-  color: #fff;
-}
-.hidden {
-  display: none;
-  opacity: 0;
-}
-#logo img {
-  height: 200px;
-  width: 200px;
-  display: block;
-  margin: 20px auto;
-}
-#title {
-  text-align: center;
-}
-#popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,0.9);
-}
-#close {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+body div {
+  padding-top: 2em;
   color: #f00;
-  font-size: 1.5em;
-  text-decoration: none;
 }
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlLnN0eWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0IsS0FBbEI7RUFDQSxPQUFNLEtBQU47O0FBRUE7RUFDRSxhQUFhLElBQWI7RUFDQSxPQUFNLEtBQU4iLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlUm9vdCI6Ii9zb3VyY2UvIiwic291cmNlc0NvbnRlbnQiOlsiYm9keVxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGRlXG4gIGNvbG9yICMwMDBcblxuICBkaXZcbiAgICBwYWRkaW5nLXRvcDogMmVtXG4gICAgY29sb3IgcmVkXG5cbiJdfQ== */

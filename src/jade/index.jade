@@ -1,12 +1,11 @@
-//- index.html
 
-include ./utils.jade
+//- utils.jade
 
--
-  var pages = [
-    { page: 'dumbify', name: 'Dumbify' },
-    { page: 'summarize', name: 'Summarize' }
-  ]
+mixin script(src)
+  script(type='application/javascript', src=src)
+
+mixin style(href)
+  link(rel='stylesheet', type='text/css', href=href)
 
 doctype html
 html(lang='en')
@@ -14,19 +13,11 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     +style('style.css')
-    //-title Egoscio's Github Pages
-    title Xav
+    
+    title Xavier 
+
   body
-    #logo
-      img(src='logo.png', alt='logo')
-    //-h2#title Egoscio's Slice of The Internet
-    h2#title Xav Slice of the internet
-    #buttons
-      for page in pages
-        button(data-page=page.page)= page.name
-    #popup.hidden
-      a#close(href='#') X
-      #pages
-    +script('jquery-latest.min.js')
-    +script('velocity.min.js')
+    div
+      | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
     +script('script.js')
