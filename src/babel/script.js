@@ -1,7 +1,10 @@
 (function (window) {
-  alert(23)
+  alert(2) 
+  //alert(8)
 
     //let index =  [ 1,  5,  10,  50,  100, 500, 1000];
+    //let romans = ['I','V','X', 'L', 'C', 'D', 'M'];
+    //let romans = ['I','V','X', 'L', 'C', 'D', 'M'];
     //let romans = ['I','V','X', 'L', 'C', 'D', 'M'];
     //console.log(index[i])
 

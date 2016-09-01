@@ -1,5 +1,3 @@
-// gulpfile.js
-
 var argv        = require('yargs').argv
 var gulp        = require('gulp')
 var jade        = require('gulp-jade')
@@ -8,6 +6,7 @@ var stylus      = require('gulp-stylus')
 var browserSync = require('browser-sync')
 var reload      = browserSync.reload;
 var sourcemaps = require('gulp-sourcemaps');
+var plumber = require('gulp-plumber');
 
 //var dest = argv.dir || '../egoscio.github.io'
 var dest = argv.dir || './index.html'
@@ -30,6 +29,7 @@ gulp.task('jade', () => {
 
 gulp.task('babel', () => {
   return gulp.src('src/babel/*.js')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel({ presets: ['es2015'] }))
     .pipe(sourcemaps.write())

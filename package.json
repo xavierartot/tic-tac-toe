@@ -19,6 +19,7 @@
   "devDependencies": {
     "browser-sync": "^2.14.3",
     "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0"
   }
 }
