@@ -21,3 +21,27 @@ function convertToRoman(num) {
   })();
 }
 convertToRoman(45);
+
+try a singleton
+function singleMe (arg1) {
+  // the cached instance
+  var instance;
+
+  // rewrite the constructor
+  singleMe = function singleMe(arg1) {
+    return instance;
+  };
+
+  // carry over the prototype properties
+  singleMe.prototype = this;
+
+  // the instance
+  instance = new singleMe();
+
+  // reset the constructor pointer
+  instance.constructor = singleMe;
+
+  
+
+  return instance;
+}
