@@ -37,6 +37,8 @@ Accelerate your environment and development
 
 `gulp watch`
 
+** the first Babel precompilation takes 1 min, then is 1 seconde**
+
 the main files are:
 
 | Files                  | Are                                        | destination
