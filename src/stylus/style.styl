@@ -1,8 +1,26 @@
+//https://coolors.co/2b2d42-8d99ae-edf2f4-ef233c-d80032
+$purple      =       #2b2d42 //purple fonce
+$gray-blue   =       #8d99ae //gray-blue
+$white       =       #edf2f4 //whithe gray
+$red-clear   =       #ef233c //red pantone
+$red         =       #d80032 //red fonce
+
 body
-  background-color: #dde
-  color #000
-
-  div
-    padding-top: 2em
-    color red
-
+  background-color $purple 
+  color $white
+  display flex;
+  font-family 'Roboto', sans-serif
+  text-align center
+h1
+  margin 0 0 1em
+  font-size 1em
+.alert
+  color $red !important 
+  background-color $gray-blue !important 
+  border 1px solid $red !important
+.hide
+  display none !important
+.show
+  display block !important
+ @media screen and (max-width 992px)
+   width: 100%
