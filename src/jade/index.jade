@@ -15,11 +15,37 @@ html(lang='en')
     title FFC - x
 
   body
-    div.container
-      h1 Free code Camp 
+    header
+      h1 Free code Camp tic tact toe
 
-      footer
-        div.thx Thanks for watching.
+    header
+      h2 you won't beat me. But you can try
+    div.container
+      section.map
+        div.map__row.map__col1
+          div.map__carre 
+            span.play.green-light 1
+          div.map__carre 
+            span.play.egg 2
+          div.map__carre 
+            span.play.orange 3
+        div.map__row.map__col2
+          div.map__carre 
+            span 4
+          div.map__carre 
+            span 5
+          div.map__carre 
+            span 6
+        div.map__row.map__col3
+          div.map__carre 
+            span 7 
+          div.map__carre 
+            span 8
+          div.map__carre 
+            span 9
+
+    footer
+      div.thx Thanks for watching.
 
     +script('script.js')
 

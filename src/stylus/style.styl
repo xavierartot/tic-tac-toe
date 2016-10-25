@@ -1,27 +1,89 @@
-//https://coolors.co/2b2d42-8d99ae-edf2f4-ef233c-d80032
-$purple      =       #2b2d42 //purple fonce
-$gray-blue   =       #8d99ae //gray-blue
-$white       =       #edf2f4 //whithe gray
-$red-clear   =       #ef233c //red pantone
-$red         =       #d80032 //red fonce
+//https://coolors.co/0b132b-1c2541-3a506b-5bc0be-6fffe9
+$blue-dark       =       #0b132b 
+$yanke-blue      =       #1c2541
+$independence    =       #3a506b
+$sea-serpent     =       #5bc0be
+$aqua            =       #6fffe9 
+$orange          =       #ffa16f//orange 
+$egg           =       #F3E9D2
+$green-light     =       #C6DABF//red
 
-body
-  background-color $purple 
-  color $white
-  font-family 'Roboto', sans-serif
-  text-align center
-h1
-  margin 0 0 1em
-  font-size 2em
-  text-align: center
-  width: 100%
+//player
+.green-light 
+  background-color: $green-light  !important
+.egg
+  background-color: $egg !important
+.orange
+  background-color: $orange !important
+
 .alert
-  color $red !important 
-  background-color $gray-blue !important 
-  border 1px solid $red !important
+  color red !important 
+  background-color red !important 
+  border 1px solid red !important
 .hide
   display none !important
 .show
   display block !important
- @media screen and (max-width 992px)
-   width: 100%
+
+body
+  background-color $yanke-blue    
+  color $aqua
+  font-family 'Roboto', sans-serif
+  text-align center
+  font-size: 1.3em
+h1
+  margin 0 0 1em
+  font-size 1.8em
+  text-align: center
+  width: 100%
+  text-transform capitalize
+h2
+  margin 0 0 1em
+  font-size 1.43em
+  text-align: center
+
+.container
+  width: 50vw
+  height: 50vh
+  margin: auto
+  .map
+    .map__row
+      display: flex
+      justify-content center 
+      align-items flex-start
+    .map__carre 
+      width: 23vh
+      height: 20vh
+      background-color $independence 
+      display: flex
+      align-items center
+      justify-content center
+      border 1px solid $yanke-blue 
+      span
+        text-indent: -10000px
+        cursor: pointer
+        height: 51px;
+        width: 51px;
+        display: flex
+        justify-content center 
+        align-items flex-start
+        width: 100%
+        height: 100%
+
+      span.play
+        background:transparent url("http://artot.net/icons-tictactoc/play-white.png") 50% 50% no-repeat;
+      span.lost
+        background:transparent url("http://artot.net/icons-tictactoc/lost-white.png") 50% 50% no-repeat;
+      span.tied
+        background:transparent url("http://artot.net/icons-tictactoc/tied-white.png") 50% 50% no-repeat;
+      span.win
+        background:transparent url("http://artot.net/icons-tictactoc/win-white.png")  50% 50% no-repeat;
+footer
+  position relative
+  background-color: $independence 
+  margin: 1em
+  padding: 1em
+  display: none
+
+ //@media screen and (max-width 992px)
+   //width: 100%
