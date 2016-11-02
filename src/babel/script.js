@@ -46,9 +46,7 @@ let TicTacToe = (() => {
   let _pawn = () => {
     for (let j = 0, l = piece.length; j < l; j++) {
 
-      let current = piece[j], prev = piece[j-1];
-
-      current.addEventListener('click', function(e) {
+      piece[j].addEventListener('click', function(e) {
         if(this.textContent === 'circle'){
           pawnChoice = 'circle' 
           //return the id of the previous element
@@ -169,54 +167,55 @@ let TicTacToe = (() => {
           turns = 0
         } else if(this.classList.contains('disable')){
           console.log('this spot is already filled');
-        } else if(turns % 2 === 0){ //circle start
+        } else if(turns % 2 === 0 ){ //circle start
           turns++
-          console.log('o');
+          console.log(pawnChoice);
           //this class is now taken, we add .disable
-          this.classList.add('disable', 'circle')
+          this.classList.add('disable', pawnChoice)
           //save the case choice
           choicePlay.push( this.getAttribute('id')  )
-          lastChoice.push('circle')
+          lastChoice.push(pawnChoice)
           if (
-               spot1.classList.contains('circle') && spot2.classList.contains('circle') &&  spot3.classList.contains('circle')
-            || spot4.classList.contains('circle') && spot5.classList.contains('circle') &&  spot6.classList.contains('circle') 
-            || spot7.classList.contains('circle') && spot8.classList.contains('circle') &&  spot9.classList.contains('circle') 
-            || spot1.classList.contains('circle') && spot4.classList.contains('circle') &&  spot7.classList.contains('circle') 
-            || spot2.classList.contains('circle') && spot5.classList.contains('circle') &&  spot8.classList.contains('circle') 
-            || spot3.classList.contains('circle') && spot6.classList.contains('circle') &&  spot9.classList.contains('circle') 
-            || spot1.classList.contains('circle') && spot5.classList.contains('circle') &&  spot9.classList.contains('circle') 
-            || spot3.classList.contains('circle') && spot5.classList.contains('circle') &&  spot7.classList.contains('circle') 
+               spot1.classList.contains(pawnChoice) && spot2.classList.contains(pawnChoice) &&  spot3.classList.contains(pawnChoice)
+            || spot4.classList.contains(pawnChoice) && spot5.classList.contains(pawnChoice) &&  spot6.classList.contains(pawnChoice) 
+            || spot7.classList.contains(pawnChoice) && spot8.classList.contains(pawnChoice) &&  spot9.classList.contains(pawnChoice) 
+            || spot1.classList.contains(pawnChoice) && spot4.classList.contains(pawnChoice) &&  spot7.classList.contains(pawnChoice) 
+            || spot2.classList.contains(pawnChoice) && spot5.classList.contains(pawnChoice) &&  spot8.classList.contains(pawnChoice) 
+            || spot3.classList.contains(pawnChoice) && spot6.classList.contains(pawnChoice) &&  spot9.classList.contains(pawnChoice) 
+            || spot1.classList.contains(pawnChoice) && spot5.classList.contains(pawnChoice) &&  spot9.classList.contains(pawnChoice) 
+            || spot3.classList.contains(pawnChoice) && spot5.classList.contains(pawnChoice) &&  spot7.classList.contains(pawnChoice) 
           ) {
-            console.log('winner is O');
-            lastWinner.push('circle')
+            console.log(pawnChoice);
+            lastWinner.push(pawnChoice)
             addDisableAll ()
             //reset()      
           } else{
             botPlay('circle')
           } 
 
-        } else if(turns % 2 !== 0){ //cross
+        } else if(turns % 2 !== 0){ 
+          let impairPawnChoice = (pawnChoice === 'cross')?  'circle' :  'cross'
           turns++
           console.log('x');
           //this class is now taken, we add .disable
-          this.classList.add('disable', 'cross')
+          this.classList.add('disable', impairPawnChoice )
           choicePlay.push( this.getAttribute('id')  )
-          lastChoice.push('cross')
+          lastChoice.push(impairPawnChoice)
           if (
-            spot1.classList.contains('cross') && spot2.classList.contains('cross') &&  spot3.classList.contains('cross')
-            || spot4.classList.contains('cross') && spot5.classList.contains('cross') &&  spot6.classList.contains('cross') 
-            || spot7.classList.contains('cross') && spot8.classList.contains('cross') &&  spot9.classList.contains('cross') 
-            || spot1.classList.contains('cross') && spot4.classList.contains('cross') &&  spot7.classList.contains('cross') 
-            || spot2.classList.contains('cross') && spot5.classList.contains('cross') &&  spot8.classList.contains('cross') 
-            || spot3.classList.contains('cross') && spot6.classList.contains('cross') &&  spot9.classList.contains('cross') 
-            || spot1.classList.contains('cross') && spot5.classList.contains('cross') &&  spot9.classList.contains('cross') 
-            || spot3.classList.contains('cross') && spot5.classList.contains('cross') &&  spot7.classList.contains('cross') 
+               spot1.classList.contains(impairPawnChoice) && spot2.classList.contains(impairPawnChoice) &&  spot3.classList.contains(impairPawnChoice)
+            || spot4.classList.contains(impairPawnChoice) && spot5.classList.contains(impairPawnChoice) &&  spot6.classList.contains(impairPawnChoice) 
+            || spot7.classList.contains(impairPawnChoice) && spot8.classList.contains(impairPawnChoice) &&  spot9.classList.contains(impairPawnChoice) 
+            || spot1.classList.contains(impairPawnChoice) && spot4.classList.contains(impairPawnChoice) &&  spot7.classList.contains(impairPawnChoice) 
+            || spot2.classList.contains(impairPawnChoice) && spot5.classList.contains(impairPawnChoice) &&  spot8.classList.contains(impairPawnChoice) 
+            || spot3.classList.contains(impairPawnChoice) && spot6.classList.contains(impairPawnChoice) &&  spot9.classList.contains(impairPawnChoice) 
+            || spot1.classList.contains(impairPawnChoice) && spot5.classList.contains(impairPawnChoice) &&  spot9.classList.contains(impairPawnChoice) 
+            || spot3.classList.contains(impairPawnChoice) && spot5.classList.contains(impairPawnChoice) &&  spot7.classList.contains(impairPawnChoice) 
           ) {
-            console.log('winner is 0');
-            lastWinner.push('circle')
+            console.log('winner is ' + impairPawnChoice);
+            lastWinner.push(impairPawnChoice)
             addDisableAll ()
           } else{
-            botPlay('cross')
+            botPlay(impairPawnChoice)
           } 
         } 
 
