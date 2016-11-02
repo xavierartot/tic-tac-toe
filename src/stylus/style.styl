@@ -5,16 +5,76 @@ $independence    =       #3a506b
 $sea-serpent     =       #5bc0be
 $aqua            =       #6fffe9 
 $orange          =       #ffa16f//orange 
-$egg           =       #F3E9D2
+$egg             =       #F3E9D2
 $green-light     =       #C6DABF//red
 
+*
+  user-select: none;
+
+.disable
+  background-color $orange 
+.nav
+  position relative
+  width 50vw
+  height 50vh
+  margin auto
+  margin-top 3.5em;
+.choice
+  display: flex
+  center-bloc()
+  display flex
+  justify-content space-between
+  align-items center
+  &__circle, &__cross
+    cursor: pointer
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 10vw
+    height: 10vh
+    box-shadow: 1px -2px 9px 1px #1c1e25
+    border: 5px solid #3a506b
+    border-radius: 3px
+    transition all .5s
+    text-indent: -10000px
+    &:after
+      font-size: 1.5em;
+      text-indent: 0
+  &__cross 
+    color $independence!important
+    background-color: $egg !important
+    &:after
+      content: 'x'
+  &__circle 
+    background-color: $green-light  !important
+    color $yanke-blue !important
+    &:after
+      content: 'o'
+      //text-indent: -46px
+
+//- mixins
+center-bloc()
+  display: flex
+  justify-content center 
+  align-items flex-start
+
 //player
-.green-light 
+.circle, .cross, .win
+  font-size: 6em !important
+
+.circle
   background-color: $green-light  !important
-.egg
+  color $yanke-blue !important
+  &:after
+    content: 'o'
+.cross
+  color $independence!important
   background-color: $egg !important
-.orange
+  &:after
+    content: 'x'
+.win
   background-color: $orange !important
+  color $independence !important
 
 .alert
   color red !important 
@@ -24,6 +84,10 @@ $green-light     =       #C6DABF//red
   display none !important
 .show
   display block !important
+.choose-button
+  transform: scale(1.2)
+  border 1px solid $orange 
+.fond
 
 body
   background-color $yanke-blue    
@@ -42,48 +106,103 @@ h2
   font-size 1.43em
   text-align: center
 
+.footer,footer
+  background-color: #3a506b;
+  padding: 1em;
+
+body
+  background-color $yanke-blue    
+  color $aqua
+  font-family 'Roboto', sans-serif
+  text-align center
+  font-size: 1.3em
+h1
+  margin 0 0 1em
+  font-size 1.8em
+  text-align: center
+  width: 100%
+  text-transform capitalize
+h2
+  margin 0 0 1em
+  font-size 1.43em
+  text-align: center
+
+.footer,footer
+  background-color: #3a506b;
+  padding: 1em;
+  margin-top: 47em;
+  width: 50vh;
+  center-bloc()
+  flex-direction: row;
+  margin: auto;
+  text-indent: -1000000px;
+  box-shadow: 1px -2px 9px 1px #1c1e25;
+
+.support-top,.support-bottom
+  background-color: #3a506b;
+  padding: 1em;
+  width: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: auto;
+  //margin-top: 7em;
+  text-indent: 0;
+  div
+    text-indent: -1000000px;
+  //center-bloc()
+.support-top
+  margin-top: -14.5em;
+.support-bottom
+  margin-top: 10em;
+
+.footer,footer
+  background-color: #3a506b;
+  padding: 1em;
+  width: 50vh;
+  center-bloc()
+  margin: auto;
+  margin-top: 0em;
+  text-indent: 0
+
+
 .container
   width: 50vw
   height: 50vh
   margin: auto
+  position relative
   .map
     .map__row
-      display: flex
-      justify-content center 
-      align-items flex-start
+      center-bloc()
     .map__carre 
+      cursor: pointer
       width: 23vh
       height: 20vh
       background-color $independence 
-      display: flex
-      align-items center
-      justify-content center
+      center-bloc()
       border 1px solid $yanke-blue 
       span
-        text-indent: -10000px
+        //text-indent: -10000px
         cursor: pointer
         height: 51px;
         width: 51px;
         display: flex
         justify-content center 
-        align-items flex-start
+        align-items center
         width: 100%
         height: 100%
 
-      span.play
-        background:transparent url("http://artot.net/icons-tictactoc/play-white.png") 50% 50% no-repeat;
-      span.lost
-        background:transparent url("http://artot.net/icons-tictactoc/lost-white.png") 50% 50% no-repeat;
-      span.tied
-        background:transparent url("http://artot.net/icons-tictactoc/tied-white.png") 50% 50% no-repeat;
-      span.win
-        background:transparent url("http://artot.net/icons-tictactoc/win-white.png")  50% 50% no-repeat;
-footer
-  position relative
-  background-color: $independence 
-  margin: 1em
-  padding: 1em
-  display: none
+      //span.play
+        //background:transparent url("http://artot.net/icons-tictactoc/play-white.png") 50% 50% no-repeat;
+      //span.lost
+        //background:transparent url("http://artot.net/icons-tictactoc/lost-white.png") 50% 50% no-repeat;
+      //span.tied
+        //background:transparent url("http://artot.net/icons-tictactoc/tied-white.png") 50% 50% no-repeat;
+      //span.win
+        //background:transparent url("http://artot.net/icons-tictactoc/win-white.png")  50% 50% no-repeat;
 
- //@media screen and (max-width 992px)
-   //width: 100%
+
+
+//@media screen and (max-width 992px)
+  //width: 100%
+

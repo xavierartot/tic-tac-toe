@@ -15,37 +15,62 @@ html(lang='en')
     title FFC - x
 
   body
+
+    //-svg.test(xmlns="http://www.w3.org/2000/svg" version='1.1' \
+      //-width='50vw' height='50vh')
+      //-path(stroke-dasharray='', stroke-dashoffset='0.00', \
+      //-path(d='M 180,150 L 20,20 L 20,280 L 180,150 Z')
+      //-path(d='M 50, 170,a 50,50 0 1,0 300,0 150,150 0 1,0 -300,0 Z')
+      
+
     header
       h1 Free code Camp tic tact toe
 
     header
       h2 you won't beat me. But you can try
     div.container
+
       section.map
         div.map__row.map__col1
           div.map__carre 
-            span.play.green-light 1
+            span#spot11 
           div.map__carre 
-            span.play.egg 2
+            span#spot12 
           div.map__carre 
-            span.play.orange 3
+            span#spot13 
         div.map__row.map__col2
           div.map__carre 
-            span 4
+            span#spot21 
           div.map__carre 
-            span 5
+            span#spot22 
           div.map__carre 
-            span 6
+            span#spot23 
         div.map__row.map__col3
           div.map__carre 
-            span 7 
+            span#spot31  
           div.map__carre 
-            span 8
+            span#spot32 
           div.map__carre 
-            span 9
+            span#spot33 
 
-    footer
+
+
+
+
+    .support-top
+      div.thx Thanks for watching.
+    .support-bottom
       div.thx Thanks for watching.
 
-    +script('script.js')
+    .nav
+      h3 choose your pawn
+      div.choice
+        span.choice__cross cross
+        span.choice__circle circle
+
+    footer.footer
+      div.thx Thanks for watching.
+
+    script(src='require.js', data-main='main')
+    //-+script('script.js')
 
