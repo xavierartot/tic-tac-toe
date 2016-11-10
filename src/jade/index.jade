@@ -11,66 +11,47 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     +style('https://fonts.googleapis.com/css?family=Roboto:100')
     +style('style.css')
-    
-    title FFC - x
+    title FFC - Tic Tac Toe
+body
 
-  body
+  header
+    h1 Free code Camp tic tact toe
+  header
+    h2 you won't beat me. But you can try
 
-    //-svg.test(xmlns="http://www.w3.org/2000/svg" version='1.1' \
-      //-width='50vw' height='50vh')
-      //-path(stroke-dasharray='', stroke-dashoffset='0.00', \
-      //-path(d='M 180,150 L 20,20 L 20,280 L 180,150 Z')
-      //-path(d='M 50, 170,a 50,50 0 1,0 300,0 150,150 0 1,0 -300,0 Z')
-      
+  .point
+    .point__circle 0
+    .point__cross 0
 
-    header
-      h1 Free code Camp tic tact toe
+  .reset.reset-hide reset
 
-    header
-      h2 you won't beat me. But you can try
-    div.container
+  div.container
+    //-BEM
+    section.map
+      div.draw
+      - for(var i = 0; i<3; i++){
+        div(class='map__row map__col#{i+1}')
+          - for(var j = 0; j<3; j++){
+            div.map__carre 
+              span(id='spot#{i+1}#{j+1}')
+          - }
+      - }  
 
-      section.map
-        div.map__row.map__col1
-          div.map__carre 
-            span#spot11 
-          div.map__carre 
-            span#spot12 
-          div.map__carre 
-            span#spot13 
-        div.map__row.map__col2
-          div.map__carre 
-            span#spot21 
-          div.map__carre 
-            span#spot22 
-          div.map__carre 
-            span#spot23 
-        div.map__row.map__col3
-          div.map__carre 
-            span#spot31  
-          div.map__carre 
-            span#spot32 
-          div.map__carre 
-            span#spot33 
+  .support-top
+    div.thx Thanks for watching.
+  .support-bottom
+    div.thx Thanks for watching.
 
+  .nav
+    h3 choose your pawn
+    //-BEM
+    div.choice
+      span.choice__cross cross
+      span.choice__circle circle
 
+  footer.footer
+    div.thx Thanks for watching.
 
-
-
-    .support-top
-      div.thx Thanks for watching.
-    .support-bottom
-      div.thx Thanks for watching.
-
-    .nav
-      h3 choose your pawn
-      div.choice
-        span.choice__cross cross
-        span.choice__circle circle
-
-    footer.footer
-      div.thx Thanks for watching.
-
-    script(src='require.js', data-main='main')
-    //-+script('script.js')
+  script(src='require.js', data-main='main')
+  //-+script('script.js')
 

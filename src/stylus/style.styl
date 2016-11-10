@@ -11,12 +11,56 @@ $green-light     =       #C6DABF//red
 *
   user-select: none;
 
+
+.point
+  width: 50vw;
+  margin: auto;
+  margin-bottom: 1.2em
+  &__circle
+    text-align: left;
+    display: inline;
+    float: left;
+  &__cross 
+    text-align: right;
+
+.reset
+  width: 5em;
+  background-color: hsl(176, 48%, 56%)
+  /* display: none; */
+  position: relative;
+  float none;
+  margin: 0 auto;
+  color: hsl(213, 30%, 32%)
+  line-height: 2em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer
+  transform: scale(1)
+  opacity: 1
+  height: 2em;
+  transition all 1s
+  //display: block
+  box-shadow: inset 0px -6px 0px 0px #2e3e6d
+  margin-bottom: -6px;
+  &:hover
+    box-shadow: inset -111px -6px 0px 0px #2e3e6d
+    color #fff
+.reset-hide
+  //display: none
+  transform: scale(0)
+  height: 0em;
+  opacity: 0
+  border 1px solid $orange 
+  transition all 1s
+  box-shadow: inset 111px -6px 0px 0px #2e3e6d
+
+
 .disable
   background-color $orange 
 .nav
   position relative
   width 50vw
-  height 50vh
+  height 30vh
   margin auto
   margin-top 3.5em;
 .choice
@@ -37,8 +81,11 @@ $green-light     =       #C6DABF//red
     border-radius: 3px
     transition all .5s
     text-indent: -10000px
+    max-width: 77px;
+    min-width: 59px;
     &:after
       font-size: 1.5em;
+      font-size: 5.5vw;
       text-indent: 0
   &__cross 
     color $independence!important
@@ -60,7 +107,7 @@ center-bloc()
 
 //player
 .circle, .cross, .win
-  font-size: 6em !important
+  font-size: 16.5vw;
 
 .circle
   background-color: $green-light  !important
@@ -86,7 +133,11 @@ center-bloc()
   display block !important
 .choose-button
   transform: scale(1.2)
-  border 1px solid $orange 
+  border-radius 50% 
+  width: 10vw
+  height: 10vh
+  //border 1px solid $orange 
+  //border: 5px solid hsl(213, 30%, 32%);
 .fond
 
 body
@@ -95,27 +146,7 @@ body
   font-family 'Roboto', sans-serif
   text-align center
   font-size: 1.3em
-h1
-  margin 0 0 1em
-  font-size 1.8em
-  text-align: center
-  width: 100%
-  text-transform capitalize
-h2
-  margin 0 0 1em
-  font-size 1.43em
-  text-align: center
 
-.footer,footer
-  background-color: #3a506b;
-  padding: 1em;
-
-body
-  background-color $yanke-blue    
-  color $aqua
-  font-family 'Roboto', sans-serif
-  text-align center
-  font-size: 1.3em
 h1
   margin 0 0 1em
   font-size 1.8em
@@ -156,6 +187,11 @@ h2
 .support-bottom
   margin-top: 10em;
 
+@media screen and (max-height: 610px)
+  body
+    .support-top, .support-bottom
+      display: none
+
 .footer,footer
   background-color: #3a506b;
   padding: 1em;
@@ -165,13 +201,21 @@ h2
   margin-top: 0em;
   text-indent: 0
 
-
 .container
   width: 50vw
   height: 50vh
   margin: auto
   position relative
+  //&:before
+    //background-color: black
+    //content: '  '
+    //position: absolute;
+    //left: 0
+    //top: 0
+    //right: 0
+    //bottom: 0
   .map
+      
     .map__row
       center-bloc()
     .map__carre 
@@ -200,9 +244,4 @@ h2
         //background:transparent url("http://artot.net/icons-tictactoc/tied-white.png") 50% 50% no-repeat;
       //span.win
         //background:transparent url("http://artot.net/icons-tictactoc/win-white.png")  50% 50% no-repeat;
-
-
-
-//@media screen and (max-width 992px)
-  //width: 100%
 
