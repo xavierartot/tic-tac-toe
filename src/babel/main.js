@@ -1,6 +1,6 @@
 //const img = require('img');
  
-require(['jquery-latest.min', 'script'],function(){
+require(['', 'script'],function(){
   $(function () {
     //$('h1').css('color', 'red')
   });

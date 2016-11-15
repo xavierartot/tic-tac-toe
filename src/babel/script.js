@@ -1,9 +1,9 @@
 //
 //prototype last
 if (!Array.prototype.last){
-    Array.prototype.last = function(){
-        return this[this.length - 1];
-    };
+  Array.prototype.last = function(){
+    return this[this.length - 1];
+  };
 };
 
 //begin module
@@ -16,8 +16,8 @@ let TicTacToe = (() => {
     lost: 'http://artot.net/sounds/Storm_exclamation.mp3'
   }
   let 
-    mapArray = ['#spot11', '#spot12', '#spot13', '#spot21', '#spot22', '#spot23', '#spot31', '#spot32', '#spot33'],
-    circle,cross,lastWinner=[],choicePlay=[],lastChoice=[],
+  mapArray = ['#spot11', '#spot12', '#spot13', '#spot21', '#spot22', '#spot23', '#spot31', '#spot32', '#spot33'],
+    circle,cross,lastWinner=[],choicePlay=[],lastChoice=[],botPlayChoice=[],
     pawnChoice='',randChoice,botChoice,turns=0,
     carres = document.querySelectorAll('.map__carre span'), 
     piece = document.querySelectorAll('.choice span'),
@@ -31,7 +31,7 @@ let TicTacToe = (() => {
     spot8 = document.querySelector('#spot32'),
     spot9 = document.querySelector('#spot33')
 
-  
+
   let _playSound = (sound) => {
     new Audio(sound).play()
   }
@@ -67,10 +67,8 @@ let TicTacToe = (() => {
         } else if(pawnChoice === '' && pawnChoice === undefined){
           alert('err program, reload the page')
         } else if(pawnChoice !== ''){ 
-          //console.log('hide');
           //document.querySelector('.reset').classList.toggle('hide')
         }  
-        //console.log(pawnChoice );
         //_starter( pawnChoice  )
         e.preventDefault();
         return pawnChoice
@@ -78,9 +76,9 @@ let TicTacToe = (() => {
     }
   }
 
-  let win = (pawn, stop) => {
+  let win = (pawn, stop) => { //recursive true
     if(
-         spot1.classList.contains(pawn) && spot2.classList.contains(pawn) &&  spot3.classList.contains(pawn)
+      spot1.classList.contains(pawn) && spot2.classList.contains(pawn) &&  spot3.classList.contains(pawn)
       || spot4.classList.contains(pawn) && spot5.classList.contains(pawn) &&  spot6.classList.contains(pawn) 
       || spot7.classList.contains(pawn) && spot8.classList.contains(pawn) &&  spot9.classList.contains(pawn) 
       || spot1.classList.contains(pawn) && spot4.classList.contains(pawn) &&  spot7.classList.contains(pawn) 
@@ -93,19 +91,19 @@ let TicTacToe = (() => {
       addDisableAll ()
       botChoice = 0
       turns = 0
-      
+
       if (stop === false) {
-        let addPoint = document.querySelector('.point__circle').innerHTML 
+        //count the total match win
+        let addPoint = document.querySelector('.point__circle span').innerHTML 
         addPoint++
-        document.querySelector('.point__circle').innerHTML = addPoint
-        //console.log(addPoint);
+        document.querySelector('.point__circle span').innerHTML = addPoint
         // bot win
         _playSound (audios.lost)
       } else{
-        let addPoint = document.querySelector('.point__cross').innerHTML
+        //count the total match win
+        let addPoint = document.querySelector('.point__cross span').innerHTML 
         addPoint++
-        document.querySelector('.point__cross').innerHTML = addPoint
-        //console.log(addPoint)
+        document.querySelector('.point__cross span').innerHTML = addPoint
         // player win
         _playSound (audios.win)
       }
@@ -117,6 +115,9 @@ let TicTacToe = (() => {
     }
   }
 
+  let _possiblitiesCornerBot = () => {
+
+  }
 
   //carres = document.querySelectorAll('.map__carre span'), 
   let botPlay = (pawnChoice , pair) => {
@@ -137,18 +138,215 @@ let TicTacToe = (() => {
 
     randChoice = parseInt( Math.random()*8 , 10)//random choice for the bot
     //
-    //mapArray[] the 9 values, each value are delete by the player
-    //the left of the values are check by here or empty
-    //
+    //mapArray[] the 9 values, each value are delete when  the player
+    //play, here we are choose if a value are in the tab and available
+    //for the bot then add this value in botPlayChoice 
     for (let i = 0, l = mapArray.length; i < l; i++) {
       let current = mapArray[i], lessDieseCurrent='',
-      rc = document.querySelector(mapArray[randChoice] ) 
+        rc = document.querySelector(mapArray[randChoice] ) 
       if (mapArray[randChoice] !== undefined && !rc.classList.contains('disable')) {
-        setTimeout(function () {
-          rc.classList.add('disable', botChoice )
-          win(botChoice, false)
-        }, 200);
-        break
+        let _id = '#'+ rc.getAttribute('id')
+        //choose the center to don't lost
+        let spot11 = document.querySelector('#spot11')
+        let spot12 = document.querySelector('#spot12')
+        let spot13 = document.querySelector('#spot13')
+        let spot21 = document.querySelector('#spot21')
+        let spot22 = document.querySelector('#spot22')
+        let spot23 = document.querySelector('#spot23')
+        let spot31 = document.querySelector('#spot31')
+        let spot32 = document.querySelector('#spot32')
+        let spot33 = document.querySelector('#spot33')
+        if (turns === 1) {
+          if (!spot22.classList.contains('disable')) {
+            botPlayChoice.push('#spot22') 
+            setTimeout(function () {
+              spot22.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else {
+            botPlayChoice.push('#'+rc.getAttribute('id')) 
+            setTimeout(function () {
+              rc.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          }
+        } else if (
+          ( mapArray.indexOf('#spot11') === -1 && mapArray.indexOf('#spot33') === -1 || 
+            mapArray.indexOf('#spot13') === -1 && mapArray.indexOf('#spot31') === -1 
+          ) && 
+          botPlayChoice.indexOf('#spot22') === -1 && !spot22.classList.contains('disable')
+        ) {
+          botPlayChoice.push('#spot22') 
+          setTimeout(function () {
+            spot22.classList.add('disable', botChoice )
+            win(botChoice, false)
+          }, 200)
+          break
+        } else if ( // premier ligne
+          mapArray.indexOf('#spot11') === -1 &&
+          mapArray.indexOf('#spot12') === -1 ||
+          mapArray.indexOf('#spot13') === -1 &&
+          mapArray.indexOf('#spot11') === -1 ||
+          mapArray.indexOf('#spot12') === -1 &&
+          mapArray.indexOf('#spot13') === -1 
+        ) {
+          if (!spot11.classList.contains('disable')) {
+            botPlayChoice.push('#spot11') 
+            setTimeout(function () {
+              spot11.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot13.classList.contains('disable')){
+            botPlayChoice.push('#spot13') 
+            setTimeout(function () {
+              spot13.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot12.classList.contains('disable')){
+            botPlayChoice.push('#spot12') 
+            setTimeout(function () {
+              spot12.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else{
+
+            setTimeout(function () {
+              rc.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            botPlayChoice.push(_id) 
+            break
+          } 
+
+
+        } else if ( // troisieme ligne
+          mapArray.indexOf('#spot31') === -1 &&
+          mapArray.indexOf('#spot32') === -1 ||
+          mapArray.indexOf('#spot33') === -1 &&
+          mapArray.indexOf('#spot31') === -1 ||
+          mapArray.indexOf('#spot32') === -1 &&
+          mapArray.indexOf('#spot33') === -1 
+        ) {
+          if (!spot31.classList.contains('disable')) {
+            botPlayChoice.push('#spot31') 
+            setTimeout(function () {
+              spot31.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot33.classList.contains('disable')){
+            botPlayChoice.push('#spot33') 
+            setTimeout(function () {
+              spot33.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot32.classList.contains('disable')){
+            botPlayChoice.push('#spot32') 
+            setTimeout(function () {
+              spot32.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else{
+
+            setTimeout(function () {
+              rc.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            botPlayChoice.push(_id) 
+            break
+          } 
+
+        } else if ( // 1 column
+          mapArray.indexOf('#spot11') === -1 &&
+          mapArray.indexOf('#spot21') === -1 ||
+          mapArray.indexOf('#spot31') === -1 &&
+          mapArray.indexOf('#spot21') === -1 ||
+          mapArray.indexOf('#spot11') === -1 &&
+          mapArray.indexOf('#spot31') === -1 
+        ) {
+          if (!spot11.classList.contains('disable')) {
+            botPlayChoice.push('#spot11') 
+            setTimeout(function () {
+              spot11.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot31.classList.contains('disable')){
+            botPlayChoice.push('#spot31') 
+            setTimeout(function () {
+              spot31.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot21.classList.contains('disable')){
+            botPlayChoice.push('#spot21') 
+            setTimeout(function () {
+              spot21.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else{
+            setTimeout(function () {
+              rc.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            botPlayChoice.push(_id) 
+            break
+
+          } 
+
+        } else if ( // 3 column
+          mapArray.indexOf('#spot13') === -1 &&
+          mapArray.indexOf('#spot23') === -1 ||
+          mapArray.indexOf('#spot13') === -1 &&
+          mapArray.indexOf('#spot33') === -1 ||
+          mapArray.indexOf('#spot23') === -1 &&
+          mapArray.indexOf('#spot33') === -1 
+        ) {
+          if (!spot23.classList.contains('disable')) {
+            botPlayChoice.push('#spot23') 
+            setTimeout(function () {
+              spot23.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot33.classList.contains('disable')){
+            botPlayChoice.push('#spot33') 
+            setTimeout(function () {
+              spot33.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else if(!spot13.classList.contains('disable')){
+            botPlayChoice.push('#spot13') 
+            setTimeout(function () {
+              spot13.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            break
+          } else{
+            setTimeout(function () {
+              rc.classList.add('disable', botChoice )
+              win(botChoice, false)
+            }, 200)
+            botPlayChoice.push(_id) 
+            break
+          } 
+        }else {
+          setTimeout(function () {
+            rc.classList.add('disable', botChoice )
+            win(botChoice, false)
+          }, 200)
+          botPlayChoice.push(_id) 
+          break
+        } 
       }else if(turns === 9){
         if (mapArray[randChoice] !== undefined && !rc.classList.contains('disable')) {
           rc.classList.add('disable', botChoice)
@@ -159,7 +357,6 @@ let TicTacToe = (() => {
         }
       }else {
         botChoice = (botChoice === 'cross')?'circle':'cross'
-        console.log('recursive : ' + botChoice);
         botPlay(botChoice ) // fun recursive
       } 
     }
@@ -189,8 +386,7 @@ let TicTacToe = (() => {
       botChoice=''
       turns = 0
       mapArray = ['#spot11', '#spot12', '#spot13', '#spot21', '#spot22', '#spot23', '#spot31', '#spot32', '#spot33']
-      //console.log(lastChoice=[] );  // ['circle','cross','circle'...]
-      //console.log(choicePlay=[]  ); // ['spot22','spot12','spot31'...]
+      botPlayChoice =[]
       e.preventDefault();
     });
     return true
@@ -202,32 +398,23 @@ let TicTacToe = (() => {
     for (let i = 0; i < carres.length; i++) {
       // map .map__row #spot+n
       let current = carres[i], prev = piece[i-1];
-      
+
       current.addEventListener('click', function(e) {
-
-      turns++
-
+        
         if (pawnChoice === '') {
           alert('you need choose the pawn')
           return false
         }
         _playSound (audios.soft)
-        //console.log('player : ' +turns );
-        //console.log('player pawnChoice : ' +pawnChoice );
         if(turns === 9) {
-          //console.log(turns)
           this.classList.add('disable', pawnChoice)
-          //console.log('draw player : ' +pawnChoice );
           win(pawnChoice, false)
           alert('playerer draw pawnChoice' + pawnChoice)
           lastWinner.push('draw')
           //_playSound (audios.tied)
           return _reset()
         } else if(this.classList.contains('disable')){
-          console.log('player: this spot is already filled');
         } else if(turns % 2 === 0 ){ //circle start
-          //console.log('player pair turns' + turns)
-          //console.log('player pair pawnChoice' + pawnChoice)
           //this class is now taken, we add .disable
           this.classList.add('disable', pawnChoice)
 
@@ -239,33 +426,19 @@ let TicTacToe = (() => {
           let valCurrent ='#'+current.id
           if (mapArray.indexOf(valCurrent) > -1) {
             delete mapArray[mapArray.indexOf(valCurrent)]
-          }
+          } else{
+          } 
+
           turns++
-          //console.log('player pair turns :' + turns)
-          //console.log('player pair pawnChoice :' + pawnChoice)
           win(pawnChoice, true)
 
-        } else if(turns % 2 !== 0){ 
-          let impairPawnChoice = (pawnChoice === 'cross')?  'circle' :  'cross'
-          //this class is now taken, we add .disable
-          this.classList.add('disable', impairPawnChoice )
-          choicePlay.push('#'+ this.getAttribute('id')  )
-          lastChoice.push(impairPawnChoice)
-
-          //remove the item played in the mapArray
-          let valCurrent ='#'+current.id
-          if (mapArray.indexOf(valCurrent) > -1) {
-            //console.log(mapArray.indexOf(valCurrent) );
-            delete mapArray[mapArray.indexOf(valCurrent)]
-          }
-          //console.log('player impair turns' + turns)
-          //console.log('player impair pawnChoice' + pawnChoice)
-          win(impairPawnChoice, true)
         } 
+        turns++
         e.preventDefault();
       }); //end click carres
     }//end of loop carres
 
+    
   } //end main function 
 
   //return an object

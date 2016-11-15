@@ -13,15 +13,16 @@ html(lang='en')
     +style('style.css')
     title FFC - Tic Tac Toe
 body
-
   header
     h1 Free code Camp tic tact toe
   header
     h2 you won't beat me. But you can try
 
   .point
-    .point__circle 0
-    .point__cross 0
+    .point__circle 
+      span 0 
+    .point__cross 
+      span 0 
 
   .reset.reset-hide reset
 
@@ -32,10 +33,10 @@ body
       - for(var i = 0; i<3; i++){
         div(class='map__row map__col#{i+1}')
           - for(var j = 0; j<3; j++){
-            div.map__carre 
+            div.map__carre
               span(id='spot#{i+1}#{j+1}')
           - }
-      - }  
+      - }
 
   .support-top
     div.thx Thanks for watching.
