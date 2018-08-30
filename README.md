@@ -1,4 +1,7 @@
 # Free Code Camp Lab
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/xavierartot/tic-tac-toe.svg)](https://greenkeeper.io/)
+
 Work faster with an environment for web developer
 
 ###tasks
